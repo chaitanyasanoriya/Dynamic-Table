@@ -17,29 +17,37 @@
 		{
 			var r = document.getElementById("t1").value;
 			var c = document.getElementById("t2").value;
-			orig_c = parseInt(c);
-			orig_r = parseInt(r);
-			var div = "<table>";
-			for(i=0;i<r;i++)
+			if(parseInt(r)>0 && parseInt(c)>0)
 			{
-				div+="<tr>"
-				for(j=0;j<c;j++)
+				orig_c = parseInt(c);
+				orig_r = parseInt(r);
+				var div = "<table>";
+				for(i=0;i<r;i++)
 				{
-					div+="<td>row "+i+" col "+j+"</td>";
+					div+="<tr>"
+					for(j=0;j<c;j++)
+					{
+						div+="<td>row "+i+" col "+j+"</td>";
+					}
+					div+="</tr>"
 				}
-				div+="</tr>"
+				div+="</table>"
+				var b2 = document.getElementById('b2');
+				var b3 = document.getElementById('b3');
+				b2.style.margin = "1em";
+				b3.style.margin = "1em";
+				document.getElementsByTagName("html")[0].innerHTML = div;
+				document.getElementsByTagName("body")[0].appendChild(b2);
+				document.getElementsByTagName("body")[0].appendChild(b3);
+				var table = document.getElementsByTagName("table")[0];
+				table.style.border = "0.2em solid #000"
+				table.style.borderCollapse = "collapse";
+				stylizeTD();
 			}
-			div+="</table><br/><br/>"
-			var b2 = document.getElementById('b2');
-			var b3 = document.getElementById('b3');
-			//document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button> <button id='b3' onclick='addRow()'>Add Row</button>";
-			document.getElementsByTagName("html")[0].innerHTML = div;
-			document.getElementsByTagName("body")[0].appendChild(b2);
-			document.getElementsByTagName("body")[0].appendChild(b3);
-			var table = document.getElementsByTagName("table")[0];
-			table.style.border = "0.2em solid #000"
-			table.style.borderCollapse = "collapse";
-			stylizeTD();
+			else
+			{
+				alert('Invalid Number of rows or Number of columns');
+			}
 		}
 
 		function addColumn()
