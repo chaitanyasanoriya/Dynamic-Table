@@ -32,7 +32,7 @@
 				div+="</tr>"
 			}
 			div+="</table>"
-			document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button><button id='b3' onclick='addRow()'>Add Row</button>";
+			document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button> <button id='b3' onclick='addRow()'>Add Row</button>";
 		}
 
 		function addColumn()
@@ -43,7 +43,6 @@
 			for(i = 0;i<n;i++)
 			{
 				var new_col = "<td style='border: 1px solid black;'>row "+i+" col "+orig_c+"</td>";
-				//console.log("rs[i].innerHTML: "+rs[i].innerHTML+" new_col: "+new_col);
 				rs[i].innerHTML+=new_col;
 			}
 			orig_c+=1;
