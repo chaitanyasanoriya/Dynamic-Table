@@ -12,7 +12,55 @@
 	<script language="javascript">
 		
 		//Your code goes here
-	
+		var orig_c;
+		var orig_r;
+
+		function generateTable()
+		{
+			var r = document.getElementById("t1").value;
+			var c = document.getElementById("t2").value;
+			orig_c = parseInt(c);
+			orig_r = parseInt(r);
+			var div = "<table style='border: 1px solid black; border-collapse: collapse;'>";
+			for(i=0;i<r;i++)
+			{
+				div+="<tr style='border: 1px solid black;'>"
+				for(j=0;j<c;j++)
+				{
+					div+="<td style='border: 1px solid black;'>row "+i+" col "+j+"</td>";
+				}
+				div+="</tr>"
+			}
+			div+="</table>"
+			document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button><button id='b3' onclick='addRow()'>Add Row</button>";
+		}
+
+		function addColumn()
+		{
+			var rs = document.getElementsByTagName("tr");
+			var n = rs.length;
+			console.log(rs+" n: "+n);
+			for(i = 0;i<n;i++)
+			{
+				var new_col = "<td style='border: 1px solid black;'>row "+i+" col "+orig_c+"</td>";
+				//console.log("rs[i].innerHTML: "+rs[i].innerHTML+" new_col: "+new_col);
+				rs[i].innerHTML+=new_col;
+			}
+			orig_c+=1;
+		}
+
+		function addRow()
+		{
+			var table = document.getElementsByTagName("table")[0];
+			var tr = "<tr style='border: 1px solid black;'>";
+			for(i=0;i<orig_c;i++)
+			{
+				tr+="<td style='border: 1px solid black;'>row "+orig_r+" col "+i+"</td>";
+			}
+			tr += "</tr>";
+			table.innerHTML+=tr;
+			orig_r+=1;
+		}
 	</script>
 	
 </html>
