@@ -19,44 +19,65 @@
 			var c = document.getElementById("t2").value;
 			orig_c = parseInt(c);
 			orig_r = parseInt(r);
-			var div = "<table style='border: 1px solid black; border-collapse: collapse;'>";
+			var div = "<table>";
 			for(i=0;i<r;i++)
 			{
-				div+="<tr style='border: 1px solid black;'>"
+				div+="<tr>"
 				for(j=0;j<c;j++)
 				{
-					div+="<td style='border: 1px solid black;'>row "+i+" col "+j+"</td>";
+					div+="<td>row "+i+" col "+j+"</td>";
 				}
 				div+="</tr>"
 			}
-			div+="</table>"
-			document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button> <button id='b3' onclick='addRow()'>Add Row</button>";
+			div+="</table><br/><br/>"
+			var b2 = document.getElementById('b2');
+			var b3 = document.getElementById('b3');
+			//document.getElementsByTagName("html")[0].innerHTML = div + "<br><br><button id='b2' onclick='addColumn()'>Add Column</button> <button id='b3' onclick='addRow()'>Add Row</button>";
+			document.getElementsByTagName("html")[0].innerHTML = div;
+			document.getElementsByTagName("body")[0].appendChild(b2);
+			document.getElementsByTagName("body")[0].appendChild(b3);
+			var table = document.getElementsByTagName("table")[0];
+			table.style.border = "0.2em solid #000"
+			table.style.borderCollapse = "collapse";
+			stylizeTD();
 		}
 
 		function addColumn()
 		{
 			var rs = document.getElementsByTagName("tr");
 			var n = rs.length;
-			console.log(rs+" n: "+n);
 			for(i = 0;i<n;i++)
 			{
-				var new_col = "<td style='border: 1px solid black;'>row "+i+" col "+orig_c+"</td>";
+				var new_col = "<td>row "+i+" col "+orig_c+"</td>";
 				rs[i].innerHTML+=new_col;
 			}
 			orig_c+=1;
+			stylizeTD();
 		}
 
 		function addRow()
 		{
 			var table = document.getElementsByTagName("table")[0];
-			var tr = "<tr style='border: 1px solid black;'>";
+			var tr = "<tr>";
 			for(i=0;i<orig_c;i++)
 			{
-				tr+="<td style='border: 1px solid black;'>row "+orig_r+" col "+i+"</td>";
+				tr+="<td>row "+orig_r+" col "+i+"</td>";
 			}
 			tr += "</tr>";
 			table.innerHTML+=tr;
 			orig_r+=1;
+			stylizeTD();
+		}
+
+		function stylizeTD()
+		{
+			var cs = document.getElementsByTagName("td");
+			var n = cs.length;
+			for(i=0;i<n;i++)
+			{
+				cs[i].style.border = "0.2em solid #000";
+				cs[i].style.padding = "1em";
+			}
 		}
 	</script>
 	
